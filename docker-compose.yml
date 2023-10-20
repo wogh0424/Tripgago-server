@@ -1,0 +1,27 @@
+version: "3"
+services:
+  backend:
+    image: wogh0424/tripgago-back
+    container_name: backend
+    hostname: backend
+    expose:
+      - "8080"
+
+  client:
+    image: wogh0424/tripgago-front
+    container_name: client
+    ports:
+      - "3000:3000"
+
+  nginx:
+    depends_on:
+      - backend
+      - client
+    restart: always
+     volumes:
+      - /docker/containers/tripgago:/etc/nginx/conf.d
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
