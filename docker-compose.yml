@@ -6,22 +6,31 @@ services:
     hostname: backend
     expose:
       - "8080"
+    networks:
+      - tripgago
 
   client:
     image: wogh0424/tripgago-front
     container_name: client
     ports:
       - "3000:3000"
+    networks:
+      - tripgago
 
   nginx:
     depends_on:
       - backend
       - client
     restart: always
-     volumes:
+    volumes:
       - /docker/containers/tripgago:/etc/nginx/conf.d
     build:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
       - "80:80"
+    networks:
+      - tripgago
+
+networks:
+  tripgago:
