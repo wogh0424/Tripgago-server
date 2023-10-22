@@ -27,5 +27,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
-          script: docker restart 6ed005b40c14
+          script: docker restart 76a71820c9ff
   
